@@ -2,7 +2,7 @@ import logging
 import json
 from datetime import datetime, timezone
 
-class jaonFormatter(logging.Formatter):
+class jsonFormatter(logging.Formatter):
     def format(self, record) -> str:
         payload = {
             "timestamp": datetime.now(timezone.utc).isoformat() + "z",
@@ -17,7 +17,7 @@ class jaonFormatter(logging.Formatter):
 
 logger = logging.getLogger("app")
 handler = logging.StreamHandler()
-handler.setFormatter(jaonFormatter())
+handler.setFormatter(jsonFormatter())
 logger.setLevel(logging.INFO)
 logger.addHandler(handler)
 logger.propagate = False
