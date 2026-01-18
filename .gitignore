@@ -60,3 +60,6 @@ cover/
 # Flask stuff:
 instance/
 .webassets-cache
+
+# logs
+app.log
