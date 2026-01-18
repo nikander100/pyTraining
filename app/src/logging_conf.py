@@ -1,11 +1,11 @@
 import logging
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 class jaonFormatter(logging.Formatter):
     def format(self, record) -> str:
         payload = {
-            "timestamp": datetime.now(datetime.timezone.utc).isoformat() + "z",
+            "timestamp": datetime.now(timezone.utc).isoformat() + "z",
             "level": record.levelname,
             "message": record.getMessage(),
             "request_id": getattr(record, "request_id", None),
