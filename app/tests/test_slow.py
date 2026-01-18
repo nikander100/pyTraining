@@ -6,7 +6,7 @@ async def _fake_sim():
     return None
 
 @pytest.mark.asyncio
-async def test_slow_route(monkeypatch):
+async def testsSlowRoute(monkeypatch):
     monkeypatch.setattr("app.src.utils.work.simulate", _fake_sim)
 
     transport = ASGITransport(app=app)
