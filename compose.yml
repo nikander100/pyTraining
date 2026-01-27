@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  my-app:
+    image: my-observability-app:latest 
+    ports:
+      - "8008:8008"
+    networks:
+      - obs-net
+
+  # 2. PROMETHEUS (Metrics Collector)
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - obs-net
+
+  # 3. LOKI (Log Aggregator)
+  # loki:
+  #   image: grafana/loki:latest
+  #   ports:
+  #     - "3100:3100"
+  #   networks:
+  #     - obs-net
+
+  # # 4. GRAFANA (Dashboard)
+  # grafana:
+  #   image: grafana/grafana:latest
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - obs-net
+
+networks:
+  obs-net:
+    driver: bridge
