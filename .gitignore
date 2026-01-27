@@ -63,3 +63,4 @@ instance/
 
 # logs
 app.log
+*.token
