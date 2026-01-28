@@ -1,7 +1,7 @@
 global:
   scrape_interval: 5s
 
-rules_files:
+rule_files:
   - "alerts.yml"
 
 scrape_configs:
