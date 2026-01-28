@@ -1,4 +1,4 @@
-import logging
+import logging, pathlib
 from logging.handlers import RotatingFileHandler
 from datetime import datetime, timezone
 from pythonjsonlogger.json import JsonFormatter 
@@ -30,8 +30,14 @@ handler = logging.StreamHandler()
 handler.setFormatter(formatter)
 handler.addFilter(DefaultFilter())
 
+log_dir = pathlib.Path("logs")
+log_dir.mkdir(parents=True, exist_ok=True)
+
 file_handler = RotatingFileHandler(
-    filename="app.log", maxBytes=5_000_000, backupCount=3, encoding="utf-8"
+    filename=log_dir / "app.log",
+    maxBytes=5_000_000,
+    backupCount=3,
+    encoding="utf-8"
 )
 file_handler.setFormatter(formatter)
 file_handler.addFilter(DefaultFilter())
