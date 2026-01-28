@@ -17,20 +17,23 @@ services:
       - obs-net
 
   # 3. LOKI (Log Aggregator)
-  # loki:
-  #   image: grafana/loki:latest
-  #   ports:
-  #     - "3100:3100"
-  #   networks:
-  #     - obs-net
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - obs-net
 
-  # # 4. GRAFANA (Dashboard)
-  # grafana:
-  #   image: grafana/grafana:latest
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - obs-net
+  # 4. GRAFANA (Dashboard)
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - obs-net
 
 networks:
   obs-net:
