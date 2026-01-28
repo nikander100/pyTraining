@@ -20,7 +20,7 @@ sinks:
   to_loki:
     type: loki
     inputs:
-      - parse_logs # "parse_logs" if transforming to JSON.
+      - my_python_logs # "parse_logs" if transforming to JSON.
     endpoint: "http://loki:3100"
     encoding:
       codec: json
