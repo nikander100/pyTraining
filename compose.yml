@@ -40,8 +40,9 @@ services:
 # 5. VECTOR (Log Shipper)
   vector:
     image: timberio/vector:latest-alpine
+    command: --config /etc/vector/vector.yml
     volumes:
-      - ./infra/vector/vector.toml:/etc/vector/vector.toml:ro
+      - ./infra/vector/vector.yml:/etc/vector/vector.yml:ro
       - /home/nikander/tmp_docker_proj/logs:/var/logs:ro
     networks:
       - obs-net
